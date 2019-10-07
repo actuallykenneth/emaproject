@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <form method="post" action="{{url('logs')}}">
+        <form method="post" action="{{url('log')}}">
             {{csrf_field()}}
             <div class="form-group">
                 <input type="text" name="first_name" class="form-control" placeholder="Enter First Name" />
@@ -43,7 +43,7 @@
             </div>
             <div class="form-group">
                 <input type="text" name="description" class="form-control" placeholder="Enter a brief description of activity" />
-            </div>
+             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" />
             </div>

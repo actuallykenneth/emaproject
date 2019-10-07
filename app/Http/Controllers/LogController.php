@@ -14,8 +14,8 @@ class LogController extends Controller
      */
     public function index()
     {
-        //$logs = Log::all()->toArray();
-       // return view('logs.index', compact('logs'));
+        $logs = Log::all()->toArray();
+        return view('log.index', compact('logs'));
     }
 
     /**
@@ -40,7 +40,7 @@ class LogController extends Controller
             'first_name' => 'required',
             'last_name' => 'required'
         ]);
-        $workLog = new Log([
+        $logs = new Log([
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
             'role' => $request->get('role'),
@@ -49,8 +49,8 @@ class LogController extends Controller
             'time_out' => $request->get('time_out'),
             'description' => $request->get('description')
         ]);
-        $workLog->save();
-        return redirect()->route('logs.create')->with('success', 'Data Added');
+        $logs->save();
+        return redirect()->route('log.index')->with('success', 'Data Added');
     }
 
     /**
@@ -72,7 +72,8 @@ class LogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $logs = Log::find($id);
+        return view('log.edit', compact('logs', 'id'));
     }
 
     /**
@@ -84,7 +85,21 @@ class LogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'first_name'    =>  'required',
+            'last_name'     =>  'required'
+        ]);
+        $logs = Log::find($id);
+        $logs->first_name = $request->get('first_name');
+        $logs->last_name = $request->get('last_name');
+        $logs-> role = $request->get('role');
+        $logs-> activity = $request->get('activity');
+        $logs-> time_in = $request->get('time_in');
+        $logs-> time_out = $request->get('time_out');
+        $logs-> description = $request->get('description');
+        $logs->save();
+        return redirect()->route('log.index')->with('
+        success', 'Data Updated');
     }
 
     /**
@@ -95,6 +110,8 @@ class LogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $logs = Log::find($id);
+        $logs->delete();
+        return redirect()->route('log.index')->with('success', 'Data Deleted');
     }
 }

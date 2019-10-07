@@ -14,7 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('log', 'LogController');
 
 Route::get('/testlogin', function () {
     return view('testlogin');
@@ -23,4 +22,9 @@ Route::get('/testlogin', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/logs', 'LogController@create');
+
+Route::resource('log', 'LogController');
+
 
