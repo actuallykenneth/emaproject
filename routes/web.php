@@ -26,5 +26,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logs', 'LogController@create');
 
 Route::resource('log', 'LogController');
-
-
