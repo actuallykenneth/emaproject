@@ -34,6 +34,8 @@
 <div class="container">
     @yield('content')
 </div>
-
+<div class="container">
+    @yield('content2')
+</div>
 </body>
 </html>

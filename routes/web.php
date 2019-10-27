@@ -27,6 +27,8 @@ Route::get('/logs', 'LogController@create');
 
 Route::resource('log', 'LogController');
 
+Route::resource('equipment', 'EquipmentController');
+
 Route::get('/admin', function() {
     return 'you are admin';
 })->middleware(['auth', 'auth.admin']);
