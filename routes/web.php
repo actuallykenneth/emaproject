@@ -27,7 +27,13 @@ Route::get('/logs', 'LogController@create');
 
 Route::resource('log', 'LogController');
 
-Route::get('/admin', function() {
-    return 'you are admin';
-})->middleware(['auth', 'auth.admin']);
+// Route::get('/admin', function () {
+//     return 'you are admin';
+// })->middleware(['auth', 'auth.admin']);
 
+
+// group everything together and apply the middleware
+Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function () {
+    // except argument because we removed those functions from the made resource controller
+    Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
+});
