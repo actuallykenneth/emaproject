@@ -79,5 +79,8 @@
     <div class="container">
         @yield('content1')
     </div>
+    <div class="container">
+        @yield('content2')
+    </div>
 </body>
 </html>

@@ -15,13 +15,13 @@ class CreateLogsTable extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('role');
-            $table->string('activity');
-            $table->string('time_in');
-            $table->string('time_out');
-            $table->string('description');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('role')->nullable();
+            $table->string('activity')->nullable();
+            $table->string('time_in')->nullable();
+            $table->string('time_out')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
