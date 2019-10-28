@@ -15,14 +15,14 @@ class CreateEquipmentLogsTable extends Migration
     {
         Schema::create('equipment_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('given_id');
-            $table->string('name');
-            $table->string('equipment_description');
-            $table->string('user_id');
-            $table->string('user_name');
-            $table->string('use_description');
-            $table->string('time_in');
-            $table->string('time_out');
+            $table->string('given_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('equipment_description')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('user_name')->nullable();
+            $table->string('use_description')->nullable();
+            $table->string('time_in')->nullable();
+            $table->string('time_out')->nullable();
             $table->timestamps();
         });
     }

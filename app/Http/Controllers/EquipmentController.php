@@ -14,9 +14,9 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        //
+        $equipment = Equipment::all()->toArray();
+        return view('equipment.equipment_index', compact('equipment'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -45,7 +45,7 @@ class EquipmentController extends Controller
             'description'   => $request->get('description')
         ]);
         $equipment->save();
-        return redirect()->route('equipment.equipement_create')->with('success', 'Equipment Added');
+        return redirect()->route('equipment.index')->with('success', 'Equipment Added');
     }
 
     /**
@@ -67,7 +67,8 @@ class EquipmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equipment = Equipment::find($id);
+        return view('equipment.equipment_edit', compact('equipment', 'id'));
     }
 
     /**
@@ -79,7 +80,16 @@ class EquipmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'   => 'required',
+        ]);
+        $equipment = Equipment::find($id);
+        $equipment->given_id = $request->get('given_id');
+        $equipment->name = $request->get('name');
+        $equipment->description = $request->get('description');
+        $equipment->save();
+        return redirect()->route('equipment.index')->with('
+        success', 'Data Updated');
     }
 
     /**
@@ -90,6 +100,8 @@ class EquipmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $equipment = Equipment::find($id);
+        $equipment->delete();
+        return redirect()->route('equipment.index')->with('success', 'Data Deleted');
     }
 }
