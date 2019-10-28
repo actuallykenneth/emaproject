@@ -20,6 +20,9 @@
                             <th>{{ $user->name }}</th>
                             <th>{{ $user->email }}</th>
                             <th>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</th>
+                            <th>
+                                <a href="{{ route('admin.users.edit', $user->id) }}">
+                                    <button type="button" class="btn btn-primary btn-sm">EDIT</button>
                         </tr>
                         @endforeach
                     </tbody>
