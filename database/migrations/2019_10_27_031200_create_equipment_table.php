@@ -13,7 +13,7 @@ class CreateEquipmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin', function (Blueprint $table) {
+        Schema::create('equipment', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('given_id')->nullable();
             $table->string('name')->nullable();
@@ -29,6 +29,6 @@ class CreateEquipmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin');
+        Schema::dropIfExists('equipment');
     }
 }

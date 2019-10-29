@@ -28,6 +28,7 @@ Route::get('/logs', 'LogController@create');
 Route::resource('log', 'LogController');
 
 Route::resource('equipment', 'EquipmentController');
+Route::resource('equipmentlog', 'EquipmentLogController');
 
 Route::get('/admin', function() {
     return 'you are admin';
