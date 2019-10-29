@@ -40,3 +40,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
     // except argument because we removed those functions from the made resource controller
     Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
 });
+
+Route::post('ajaxPit', 'EquipmentLogController@fetch')->name('ajaxPit');
+
+
+

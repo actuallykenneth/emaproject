@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\EquipmentLog;
+use App\Equipment;
 
 class EquipmentLogController extends Controller
 {
@@ -25,7 +26,12 @@ class EquipmentLogController extends Controller
      */
     public function create()
     {
-        return view('equipmentlog.equipmentlog_create');
+        // Grab all the rows from Equipment table and just grab the names
+        // $equipment = Equipment::pluck('name');
+        $allequipment = Equipment::all();
+        return view('equipmentlog.equipmentlog_create')->with(['equipment' => Equipment::pluck('name'),
+                                                                'allequipment' => $allequipment]);
+        // return view('equipmentlog.equipmentlog_create');
     }
 
     /**
@@ -115,5 +121,23 @@ class EquipmentLogController extends Controller
         $equipmentlog = EquipmentLog::find($id);
         $equipmentlog->delete();
         return redirect()->route('equipmentlog.index')->with('success', 'Data Deleted');
+    }
+
+    public function fetch(Request $request)
+    {
+        // $output = new \Symfony\Component\Console\Output\ConsoleOutput(2);
+        // $output->writeln("Hey");
+
+        // $row = "test func";
+        // dd($row);
+        $t = $request->get('equipName');
+
+        // $t = Equipment::all();
+        $data = Equipment::where('name', $t)->get()->first();
+        $desc = $data->description;
+        // $res = $data.description;
+        // $desc = $row->description;
+        // console.log($desc);
+        return response()->json(['desc'=>$desc]);
     }
 }

@@ -24,6 +24,8 @@ class EquipmentController extends Controller
      */
     public function create()
     {
+
+        // return view('equipment.equipment_create')->with(['equipment' => Equipment::find($id), 'roles' => Role::all()]);
         return view('equipment.equipement_create');
     }
 
