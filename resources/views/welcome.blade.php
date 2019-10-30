@@ -76,6 +76,9 @@
                 <a href="{{ url('/equipment') }}">Equipment List</a>
             @endif
             @if(Auth::check() && Auth::user()->isAdministrator())
+                <a href="{{ url('/categories') }}">Categories List</a>
+            @endif
+            @if(Auth::check() && Auth::user()->isAdministrator())
             <a href="{{ route('admin.users.index') }}">Manage Users</a>
             @endif
             @auth

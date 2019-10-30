@@ -32,9 +32,15 @@
             <div class="form-group">
                 <input type="text" name="role" class="form-control" placeholder="Enter Your Role" />
             </div>
-            <div class="form-group">
-                <input type="text" name="activity" class="form-control" placeholder="Enter Your Activity" />
+            <div class="form group" id='form-equip'>
+                <select class="form-control input-lg-dynamic" name="activity" id="activity">
+                    @foreach($category as $e)
+                        <option value="{{ $e }}">{{ $e }}</option>
+                    @endforeach
+                {{csrf_field()}}
             </div>
+            <br/>
+
             <div class="form-group">
                 <input type="text" name="time_in" class="form-control" placeholder="Enter the time you started" />
             </div>
