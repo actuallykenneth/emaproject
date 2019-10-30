@@ -26,35 +26,37 @@
             <br />
             <br />
         </div>
-        <table class="table table-bordered" id="myTable">
+        <table class="table table-bordered tablesorter tablesorter-blue" id="myTable">
             <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
             </thead>
             <tbody>
-            @foreach($equipment as $row)
-            <tr>
-                <td>{{$row['given_id']}}</td>
-                <td>{{$row['name']}}</td>
-                <td>{{$row['description']}}</td>
+                @foreach($equipment as $row)
+                <tr>
+                    <td>{{$row['given_id']}}</td>
+                    <td>{{$row['name']}}</td>
+                    <td>{{$row['description']}}</td>
 
-                <td><a href="{{action('EquipmentController@edit', $row['id'])}}" class="btn btn-warning">Edit</a></td>
-                <td>
-                    <form method="post" class="delete_form"
-                        action="{{action('EquipmentController@destroy', $row['id'])}}">
-                        {{csrf_field()}}
-                        <input type="hidden" name="_method" value="DELETE" />
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
+                    <td><a href="{{action('EquipmentController@edit', $row['id'])}}" class="btn btn-warning">Edit</a>
+                    </td>
+                    <td>
+                        <form method="post" class="delete_form"
+                            action="{{action('EquipmentController@destroy', $row['id'])}}">
+                            {{csrf_field()}}
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+
+                @endforeach
             </tbody>
-            @endforeach
         </table>
     </div>
 </div>

@@ -113,5 +113,11 @@
         </div>
     </div>
 </body>
-
+@if(Auth::check() && Auth::user()->isAdministrator())
+        <style>
+            a {
+                color: red !important;
+            }
+            </style>
+    @endif
 </html>
