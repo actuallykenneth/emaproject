@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Categories;
 use Illuminate\Http\Request;
 use App\Log;
 
@@ -25,7 +26,7 @@ class LogController extends Controller
      */
     public function create()
     {
-        return view('log.create');
+        return view('log.create')->with(['category' => Categories::pluck('name')]);
     }
 
     /**

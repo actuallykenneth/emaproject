@@ -29,6 +29,7 @@ Route::resource('log', 'LogController');
 
 Route::resource('equipment', 'EquipmentController');
 Route::resource('equipmentlog', 'EquipmentLogController');
+Route::resource('categories', 'CategoriesController');
 
 Route::get('/admin', function() {
     return 'you are admin';
