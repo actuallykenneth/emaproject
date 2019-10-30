@@ -89,6 +89,14 @@ class EquipmentLogController extends Controller
         return view('equipmentlog.equipmentlog_edit', compact('equipmentlog', 'id'));
     }
 
+    public function checkIn($id)
+    {
+        $equipmentlog = EquipmentLog::find($id);
+        $equipmentlog->time_out = Carbon\Carbon::now();
+        $equipmentlog->save();
+        return redirect()->route('equipmentlog.index')->with('success', 'Equipment checked in');
+    }
+
     /**
      * Update the specified resource in storage.
      *

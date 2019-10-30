@@ -41,6 +41,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
     Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
 });
 
+Route::post('checkIn/{id}','EquipmentLogController@checkIn');
+
 Route::post('ajaxPit', 'EquipmentLogController@fetch')->name('ajaxPit');
 
 
