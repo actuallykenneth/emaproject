@@ -29,14 +29,13 @@
 
 
             <div class="form group" id='form-equip'>
-                <select class="form-control input-lg-dynamic" id="equipment-name">
+                <select class="form-control input-lg-dynamic" name="name" id="equipment-name">
                     @foreach($equipment as $e)
                     <option value="{{ $e }}">{{ $e }}</option>
                     @endforeach
                     {{csrf_field()}}
             </div>
-
-
+            <br/>
             <script>
                 $(document).ready(function () {
                     $("#equipment-name").change(function () {
@@ -74,37 +73,25 @@
                                 // dd(data);
                             }
                         })
-
                     });
                 });
-
-
-
-
-
-
             </script>
 
 
             <div class="form-group">
                 <input id="desc" type="text" name="equipment_description" class="form-control"
-                    placeholder="Equipment Description" /> //TODO: Get equipment from equipment table.
+                    placeholder="No Equipment Description" readonly/>
             </div>
             <div class="form-group">
-                <input type="text" name="user_name" class="form-control" placeholder="User Name" /> //TODO: Get user
-                name from users table
+                <input type="text" name="user_name" class="form-control" value="{{ $user->name }}" readonly/>
             </div>
             <div class="form-group">
-                <input type="text" name="use_description" class="form-control"
-                    placeholder="Please enter what the equipment will be used for" />
+                <input type="text" name="time_in" class="form-control" value="{{ $mytime->format('m/d/Y, g:i A ') }}" readonly/>
             </div>
             <div class="form-group">
-                <input type="text" name="time_in" class="form-control" placeholder="Current Time" /> //TODO: Get time of
-                entry.
-            </div>
-            <div class="form-group">
-                <input type="text" name="time_out" class="form-control" placeholder="Fill when you check item out" />
-                //TODO: just remove this field then use controller@edit to populate it.
+                {{--<input type="text" name="use_description" class="form-control"
+                    placeholder="Please enter what the equipment will be used for" />--}}
+                <textarea rows="4" type="text" name="use_description" class="form-control">Please enter what the equipment will be used for.</textarea>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" />

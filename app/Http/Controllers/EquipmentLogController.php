@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\EquipmentLog;
 use App\Equipment;
+use Auth;
+use Carbon;
 
 class EquipmentLogController extends Controller
 {
@@ -29,8 +31,12 @@ class EquipmentLogController extends Controller
         // Grab all the rows from Equipment table and just grab the names
         // $equipment = Equipment::pluck('name');
         $allequipment = Equipment::all();
+        $user = Auth::user();
+        $mytime = Carbon\Carbon::now();
         return view('equipmentlog.equipmentlog_create')->with(['equipment' => Equipment::pluck('name'),
-                                                                'allequipment' => $allequipment]);
+                                                                'allequipment' => $allequipment,
+                                                                'user' => $user,
+                                                                'mytime' => $mytime]);
         // return view('equipmentlog.equipmentlog_create');
     }
 
