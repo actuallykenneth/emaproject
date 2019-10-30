@@ -86,7 +86,7 @@
                 <input type="text" name="user_name" class="form-control" value="{{ $user->name }}" readonly/>
             </div>
             <div class="form-group">
-                <input type="text" name="time_in" class="form-control" value="{{ $mytime->format('m/d/Y, g:i A ') }}" readonly/>
+                <input id="datetimepicker1" type="text" name="time_in" class="form-control" value="{{ $mytime->format('m/d/Y, g:i A ') }}" readonly/>
             </div>
             <div class="form-group">
                 {{--<input type="text" name="use_description" class="form-control"
@@ -99,4 +99,5 @@
         </form>
     </div>
 </div>
+
 @endsection
