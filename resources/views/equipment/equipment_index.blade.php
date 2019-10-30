@@ -1,51 +1,65 @@
 @extends('layouts.app')
 
 @section('content1')
-    <div class="row">
-        <div class="col-md-12">
-            <br />
-            <h3 align="center">Equipement</h3>
-            <br />
-            @if($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{$message}}</p>
-                </div>
-            @endif
-            <div align="right">
-                <a href="{{route('equipment.create')}}" class="btn
-            btn-primary">Add</a>
-                <br />
-                <br />
-            </div>
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-                @foreach($equipment as $row)
-                    <tr>
-                        <td>{{$row['given_id']}}</td>
-                        <td>{{$row['name']}}</td>
-                        <td>{{$row['description']}}</td>
 
-                        <td><a href="{{action('EquipmentController@edit', $row['id'])}}" class="btn btn-warning">Edit</a></td>
-                        <td>
-                            <form method="post" class="delete_form" action="{{action('EquipmentController@destroy', $row['id'])}}">
-                                {{csrf_field()}}
-                                <input type="hidden" name="_method" value="DELETE" />
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/css/theme.blue.css">
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.0/js/jquery.tablesorter.combined.js"
+    integrity="sha256-AQTn9CwiNvZG2zsoT0gswugjZp0alCQySLyt9brT9Cg=" crossorigin="anonymous"></script>
+
+<div class="row">
+    <div class="col-md-12">
+        <br />
+        <h3 align="center">Equipement</h3>
+        <br />
+        @if($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{$message}}</p>
         </div>
+        @endif
+        <div align="right">
+            <a href="{{route('equipment.create')}}" class="btn
+            btn-primary">Add</a>
+            <br />
+            <br />
+        </div>
+        <table class="table table-bordered" id="myTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($equipment as $row)
+            <tr>
+                <td>{{$row['given_id']}}</td>
+                <td>{{$row['name']}}</td>
+                <td>{{$row['description']}}</td>
+
+                <td><a href="{{action('EquipmentController@edit', $row['id'])}}" class="btn btn-warning">Edit</a></td>
+                <td>
+                    <form method="post" class="delete_form"
+                        action="{{action('EquipmentController@destroy', $row['id'])}}">
+                        {{csrf_field()}}
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+            @endforeach
+        </table>
     </div>
-    <script>
-        $(document).ready(function(){
+</div>
+<script>
+    $(document).ready(function(){
             $('.delete_form').on('submit', function(){
                 if(confirm("Are you sure you want to delete this record?"))
                 {
@@ -57,5 +71,30 @@
                 }
             })
         });
-    </script>
+</script>
+
+<script>
+    // make these tables sortable!
+        $(document).ready(function($){
+            $("#myTable").tablesorter({
+              theme: 'blue',
+              widgets: ["zebra", "filter"],
+              widgetOptions: {
+                  zebra : ["normal-row", "alt-row"]
+              },
+            });
+            });
+</script>
+
+<style>
+    /* table.tablesorter tbody tr.normal-row td {
+            background: #888;
+            color: #fff;
+        } */
+
+    table.tablesorter tbody tr.alt-row td {
+        background: #e6eaff;
+        /* color: #fff; */
+    }
+</style>
 @endsection
