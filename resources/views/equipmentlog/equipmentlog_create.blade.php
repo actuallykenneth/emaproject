@@ -1,7 +1,9 @@
+{{--We extend from the master blade template. We are using the master.blade.php file here located at emaproject\resources\views\master.blade.php.--}}
 @extends('master')
-
+{{--Anything in this section will be displayed in the content section of the master.blade.php template.--}}
 @section('content')
 
+{{--For Ajex--}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <div class="row">
@@ -9,15 +11,17 @@
         <br />
         <h3 align="center">Checkout Equipment</h3>
         <br />
+{{--    Display errors for user input (Ex: User enters blank name. Show error.)--}}
         @if(count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
                 @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
+                <li>{{$error}}</li>     {{--output Error--}}
                 @endforeach
             </ul>
         </div>
         @endif
+{{--    Display success message if post method is successful.--}}
         @if(\Session::has('success'))
         <div class="alert alert-success">
             <p>{{ \Session::get('success') }}</p>
@@ -26,8 +30,8 @@
 
         <form method="post" action="{{url('equipmentlog')}}">
             {{csrf_field()}}
-
-
+{{--       Display the drop down menu for each equipment so that we can get the proper description and information about the item to update using
+           ajex calls--}}
             <div class="form group" id='form-equip'>
                 <select class="form-control input-lg-dynamic" name="name" id="equipment-name">
                     @foreach($equipment as $e)
@@ -36,6 +40,7 @@
                     {{csrf_field()}}
             </div>
             <br/>
+{{--            Ajex call updates--}}
             <script>
                 $(document).ready(function () {
                     $("#equipment-name").change(function () {

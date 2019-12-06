@@ -1,5 +1,6 @@
+{{--We extend from the app blade template. We are using the app.blade.php file here located at emaproject\resources\views\layouts\app.blade.php.--}}
 @extends('layouts.app')
-
+{{--Anything in this section will be displayed in the content section of the app.blade.php template.--}}
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -13,7 +14,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     You are logged in!
                 </div>
             </div>

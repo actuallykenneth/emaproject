@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categories;
 
+//This is our Controller for Categories. This is where we update and manipulate data in our SQL table.
 class CategoriesController extends Controller
 {
     /**
@@ -12,6 +13,8 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //Calling this method will return data from SQL data and return it to the categories index page.
     public function index()
     {
         $categories = Categories::all()->toArray();
@@ -23,6 +26,7 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //This simply redirects us to the categories create page.
     public function create()
     {
         return view('categories.categories_create');
@@ -34,6 +38,8 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //This function is how a new entries get created and stored. We then return back to the index page of categories.
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -64,6 +70,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //This function allows us to edit a entry based on passed ID. returns us to the edit page
     public function edit($id)
     {
         $categories = Categories::find($id);
@@ -77,6 +84,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //This is how we update a entry. We use id to get the specific entry then return to index for categories.
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -96,6 +104,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Called to destroy a specific entry in the SQL table.
     public function destroy($id)
     {
         $categories = Categories::find($id);

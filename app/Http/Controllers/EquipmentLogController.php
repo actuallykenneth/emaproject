@@ -15,6 +15,7 @@ class EquipmentLogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Calling this method will return data from SQL data and return it to the equipmentlog index page.
     public function index()
     {
         $equipmentlog = EquipmentLog::all()->toArray();
@@ -26,6 +27,7 @@ class EquipmentLogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //This simply redirects us to the equipmentlog create page.
     public function create()
     {
         // Grab all the rows from Equipment table and just grab the names
@@ -46,6 +48,7 @@ class EquipmentLogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //This function is how a new entries get created and stored. We then return back to the index page of equipmentlog.
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -83,12 +86,13 @@ class EquipmentLogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //This function allows us to edit a entry based on passed ID. returns us to the edit page
     public function edit($id)
     {
         $equipmentlog = EquipmentLog::find($id);
         return view('equipmentlog.equipmentlog_edit', compact('equipmentlog', 'id'));
     }
-
+    //use this to add the current time in the time_in column.
     public function checkIn($id)
     {
         $equipmentlog = EquipmentLog::find($id);
@@ -104,6 +108,7 @@ class EquipmentLogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //This is how we update a entry. We use id to get the specific entry then return to index for equipmentlog.
     public function update(Request $request, $id)
     {
         $this->validate($request, [

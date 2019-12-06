@@ -1,3 +1,4 @@
+{{--This is our app blade template. We use this to display a diffrent format for index pages.--}}
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -19,11 +20,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-
-
-
-
 </head>
 
 <body>
@@ -94,7 +90,7 @@
     </div>
 </body>
 
-
+{{--Checks to see if user has logged in and is a admin. If user is admin then change the styles sheet to display things in red--}}
 @if(Auth::check() && Auth::user()->isAdministrator())
 <style>
     #admin {

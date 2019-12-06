@@ -12,6 +12,7 @@ class EquipmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Calling this method will return data from SQL data and return it to the equipment index page.
     public function index()
     {
         $equipment = Equipment::all()->toArray();
@@ -22,6 +23,7 @@ class EquipmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //This simply redirects us to the equipment create page.
     public function create()
     {
 
@@ -35,6 +37,7 @@ class EquipmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //This function is how a new entries get created and stored. We then return back to the index page of equipment.
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -67,6 +70,7 @@ class EquipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //This function allows us to edit a entry based on passed ID. returns us to the edit page
     public function edit($id)
     {
         $equipment = Equipment::find($id);
@@ -80,6 +84,7 @@ class EquipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //This is how we update a entry. We use id to get the specific entry then return to index for equipment.
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -100,6 +105,7 @@ class EquipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Called to destroy a specific entry in the SQL table.
     public function destroy($id)
     {
         $equipment = Equipment::find($id);

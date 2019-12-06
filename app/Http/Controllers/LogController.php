@@ -39,7 +39,9 @@ class LogController extends Controller
     {
         $this->validate($request, [
             'first_name' => 'required',
-            'last_name' => 'required'
+            'last_name' => 'required',
+             'time_in' => 'required'
+
         ]);
         $logs = new Log([
             'first_name' => $request->get('first_name'),
@@ -88,7 +90,8 @@ class LogController extends Controller
     {
         $this->validate($request, [
             'first_name'    =>  'required',
-            'last_name'     =>  'required'
+            'last_name'     =>  'required',
+            'time_in' => 'required'
         ]);
         $logs = Log::find($id);
         $logs->first_name = $request->get('first_name');

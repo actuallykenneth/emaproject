@@ -1,3 +1,4 @@
+{{--This is the master template. Allot of the links below are to set up the blade template --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +39,7 @@
 
 
 </head>
-
+{{--This is where the title gets displayed on the top bar.--}}
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -49,10 +50,13 @@
             </div>
         </nav>
     </div>
+
     <div class="container">
+{{--        Display the content that is linked to content section from any .blade.php file that extends this template.--}}
         @yield('content')
     </div>
     <div class="container">
+        {{--        Display the content that is linked to content2 section from any .blade.php file that extends this template.--}}
         @yield('content2')
     </div>
 </body>

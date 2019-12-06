@@ -1,3 +1,4 @@
+{{--Home page for our application--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -69,18 +70,20 @@
 <body>
 
     <div class="flex-center position-ref full-height">
-
         @if (Route::has('login'))
         <div class="top-right links">
+{{--        Check to see if user is logged in and admin then display proper categories for proper roles
+            (Ex: Check if user is logged in as admin and then display the equipment list.)--}}
             @if(Auth::check() && Auth::user()->isAdministrator())
                 <a href="{{ url('/equipment') }}">Equipment List</a>
             @endif
             @if(Auth::check() && Auth::user()->isAdministrator())
-                <a href="{{ url('/categories') }}">Categories List</a>
+                <a href="{{ url('/categories') }}">Activity List</a>
             @endif
             @if(Auth::check() && Auth::user()->isAdministrator())
             <a href="{{ route('admin.users.index') }}">Manage Users</a>
             @endif
+{{--        If user is logged in display the home button but if not then display login and register.--}}
             @auth
             <a href="{{ url('/home') }}">Home</a>
             @else
@@ -97,18 +100,10 @@
             <div class="title m-b-md">
                 EMA Services
             </div>
-
+{{--            Links for the main page. Url points user to a specified index file within the --}}
             <div class="links">
                 <a href="{{ url('/log') }}">Database</a>
                 <a href="{{ url('/equipmentlog') }}">Equipment Log</a>
-                {{--<a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                    --}}
             </div>
         </div>
     </div>
